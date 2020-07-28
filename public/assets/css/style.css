@@ -1,0 +1,74 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+#principal{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    border-right:2px solid #E4E4E4 ;
+}
+.opciones {
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    flex-direction: row;
+    order: 0;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    align-self: center;
+    display: flex;
+    height: 100%;
+   
+}
+.panel-opcion{
+    border-right:2px solid #E4E4E4 ;
+    height: 100%;
+}
+.panel-propiedades{
+    display: inline-block;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-top: 5px;
+}
+.panel-opcion ul li{
+   
+    padding: 15px;   
+    list-style-type: none;
+    
+}
+.panel-opcion ul li:hover{
+    padding: 15px;   
+    list-style-type: none;
+    background-color: #E4E4E4;
+    color: white;
+}
+
+
+.tablero{
+    background-color: #E4E4E4;
+    width: 100%;
+    height: 100%;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+}
+.usuariosconectados{
+    width: 10%;
+    background-color: white;
+}
+.panel-work{  
+    background-color: white;  
+    justify-content: center;
+    width: 80%;    
+    height: 80%;
+}
+form input{
+    display: block; 
+    padding: 2px;
+}
