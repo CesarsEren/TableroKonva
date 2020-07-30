@@ -12,7 +12,7 @@ var io = socket(server);
 var listausuarios=[];
 var x=0;
 io.on('connection', function(socket){
-	console.log('Hay una conexion', socket.id); 
+	//console.log('Hay una conexion', socket.id); 
 	socket.on('tablero', function(data){
 		console.log(data);
 		io.sockets.emit('tablero', data);
