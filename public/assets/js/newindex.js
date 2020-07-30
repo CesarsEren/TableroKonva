@@ -26,6 +26,7 @@ var cargarcomplementosopciones = () => {
                     globalCompositeOperation: 'source-over',
                     points: [pos.x, pos.y],
                 });
+
             } else {
                 lastLine = new Konva.Line({
                     stroke: '#df4b26',
@@ -39,7 +40,11 @@ var cargarcomplementosopciones = () => {
     });
 
     stage.on('mouseup touchend', function () {
-        isPaint = false;
+        isPaint = false;  
+        socket.emit('tablero', {
+            accion: 'pintarpantalla',
+            line: lastLine.attrs
+        })
     });
 
     // and core function - drawing
@@ -51,6 +56,10 @@ var cargarcomplementosopciones = () => {
         var newPoints = lastLine.points().concat([pos.x, pos.y]);
         lastLine.points(newPoints);
         layer.batchDraw();
+        /*socket.emit('tablero',{
+            accion:'pintarpantalla',
+            line:lastLine.attrs
+        })*/
     });
 
 }
@@ -85,17 +94,24 @@ socket.on('tablero', function (data) {
             actualizarcircle(data.shape, false);
             break;
         case 'crearcuadrotexto':
-            crearcuadrotexto(data.group,data.caja,data.simpleText, false);
+            crearcuadrotexto(data.group, data.caja, data.simpleText, false);
             break;
         case 'actualizarcuadrotexto':
-            actualizarcuadrotexto(data.group,data.caja,data.simpleText, false);
+            actualizarcuadrotexto(data.group, data.caja, data.simpleText, false);
+            break;
+        case 'pintarpantalla':
+            pintarpantalla(data.line);
             break;
 
     }
 });
 
 
-
+var pintarpantalla = function (linea) {
+    lastLine = new Konva.Line(linea);
+    layer.add(lastLine);
+    layer.draw();
+}
 
 
 
@@ -119,8 +135,8 @@ socket.on('tablero', function (data) {
 var crearcuadrotexto = function (_group, _caja, _simpleText, emit) {
     var group = new Konva.Group(_group);
     console.log("condicion cuadro", _idcreado !== group.id());
-    if (_idcreado !== group.id()) { 
-        var simpleText = new Konva.Text(_simpleText); 
+    if (_idcreado !== group.id()) {
+        var simpleText = new Konva.Text(_simpleText);
         var caja = new Konva.Rect(_caja);
 
         group.add(caja);
@@ -143,7 +159,7 @@ var crearcuadrotexto = function (_group, _caja, _simpleText, emit) {
         });
 
         group.on('dragend', function () {
-            actualizarcuadrotexto(group.attrs,caja.attrs,simpleText.attrs,true);
+            actualizarcuadrotexto(group.attrs, caja.attrs, simpleText.attrs, true);
         });
 
         group.on('dblclick dbltap', function () {
@@ -165,9 +181,8 @@ var crearcuadrotexto = function (_group, _caja, _simpleText, emit) {
         });
     }
 }
-var actualizarcuadrotexto = function(_group,_caja,_simpleText,emit)
-{
-    var _groupT =new  Konva.Group(_group);
+var actualizarcuadrotexto = function (_group, _caja, _simpleText, emit) {
+    var _groupT = new Konva.Group(_group);
     var group = stage.find('#' + _groupT.id())[0];
 
     var _RectT = new Konva.Rect(_caja);
@@ -185,7 +200,7 @@ var actualizarcuadrotexto = function(_group,_caja,_simpleText,emit)
     Rect[0].width(_TextT.width() + 16);
     Rect[0].height(_TextT.width() + 16);
     Text[0].y((_RectT.y() + _RectT.height() / 2) - 8);
- 
+
     group.scaleX(_groupT.scaleX());
     group.scaleY(_groupT.scaleY());
 
@@ -194,7 +209,7 @@ var actualizarcuadrotexto = function(_group,_caja,_simpleText,emit)
 
     layer.draw();
 
-    if(!emit){return;}
+    if (!emit) { return; }
     socket.emit("tablero", {
         accion: "actualizarcuadrotexto",
         group: group.attrs,
@@ -261,9 +276,10 @@ var cargarsubopciones = () => {
         Rect[0].height(Text[0].width() + 16);
         Text[0].y((Rect[0].y() + Rect[0].height() / 2) - 8);
         layer.draw();
+        actualizarcuadrotexto(elementoseleccionado.attrs, Rect[0].attrs, Text[0].attrs, true);
         $("#modalTexto").modal("hide");
     });
-} 
+}
 var sessioniniciada = false;
 var iniciarchat = () => {
 
