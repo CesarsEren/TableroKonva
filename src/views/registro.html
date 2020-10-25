@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizarra</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/assets/css/lumen.bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+</head>
+
+<body>
+    <main class="bg">
+        <section id="login">
+            <div class="col-md-4  m-auto  card mb-3">
+                <h3 class="card-header">Registrar Usuario</h3>
+                <div class="card-body">
+                    <form id="frmregistro" action="regusuario" method="post">
+                        <div class="form-group">
+                            <label for="nombres">Nombres</label>
+                            <input type="text" class="form-control" name="nombres" id="nombres"
+                                placeholder="Ingrese Nombres">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="paterno">Apellido Paterno</label>
+                            <input type="text" class="form-control" name="paterno" id="paterno"
+                                placeholder="Ingrese apellido paterno">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="materno">Apellido Materno</label>
+                            <input type="text" class="form-control" name="materno" id="materno"
+                                placeholder="Ingrese apellido materno">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="correo">Correo</label>
+                            <input type="email" class="form-control" name="correo" id="correo"
+                                placeholder="Ingrese Correo">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="pass">Contraseña</label>
+                            <input type="password" class="form-control" name="pass" id="pass" placeholder="contraseña">
+                        </div>
+                        <!--<div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        </div>-->
+                        <div class="row">
+                            <div class="container">
+                                <p class=" text-danger float-right" id="error"></p>
+                            </div>
+                        </div>
+                        <div class="row"> 
+                            <div class="col-md-6"> 
+                                <input type="submit" class="btn btn-success btn-lg" value="Registrar">
+                            </div>
+                            <div class="col-md-6 ">
+                                <a href="login" class="btn  btn-outline-info btn-lg float-right">Login</a>
+                            </div>
+                        </div> 
+                    </form>
+                </div>
+            </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {//WHEN DOOM CARGADO
+            let params = new URLSearchParams(window.location.search);//url de ubicación buscar parametros get
+            var error = document.getElementById('error');//llenado de Error
+            var nombres = document.getElementById('nombres');
+            var paterno = document.getElementById('paterno');
+            var materno = document.getElementById('materno');
+            var correo = document.getElementById('correo');
+            nombres.value = params.get('nombres');
+            paterno.value = params.get('paterno');
+            materno.value = params.get('materno');
+            correo.value = params.get('correo');
+            error.innerHTML = params.get('error');
+        });        
+    </script>
+
+
+</body>
+
+</html>

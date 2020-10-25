@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClassBoard</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+    <script src="https://unpkg.com/konva@7.0.3/konva.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/css/lumen.bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/node-uuid/1.4.7/uuid.min.js"></script>
+    <script src="assets/js/newindex.js"></script>
+
+</head>
+
+<body style="background-color: #E4E4E4;">
+
+    <main>
+        <!--<div id="panel-bienvenida">
+            <h2>Bienvenido al Chat</h2>
+            <input id = "persona" type="text" placeholder = "Ingresa tu nombre">
+            <button onclick = "iniciarchat();">Ingresar al Chat</button>
+        </div>-->
+
+        <div class="modal" id="login" data-toggle="modal" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Iniciar Sesión</h5>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" id="inuser" class="form-control" />
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" onclick="iniciarchat();">Ingresar al Chat</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="modalTexto">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h5 class="modal-title">Caja de Texto</h5>
+
+                        <input type="color" id="inputColorTexto" class="float-right" />
+                        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>-->
+                    </div>
+                    <div class="modal-body">
+                        <textarea cols="3" id="inputTexto" class="form-control"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" id="btnTextGuardar" class="btn btn-primary">Guardar</button>
+                        <button type="button" id="btnTextEditar" style="display: none;"
+                            class="btn btn-primary">Editar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="d-flex" id="trabajo">
+
+            <article class="d-flex justify-content-start align-items-center" style="height: 100vh;">
+                <ul class="list-group" id="lista-opciones">
+                    <li class="list-group-item"><img src="assets/img/cursor.png" alt=""></li>
+                    <li class="list-group-item"><img src="assets/img/rectangulo.png" alt=""></li>
+                    <li class="list-group-item"><img src="assets/img/circulo.png" alt=""></li>
+                    <li class="list-group-item"><img src="assets/img/pencil.png" alt=""></li>
+                    <li class="list-group-item"><img src="assets/img/eraser.png" alt=""></li>
+                    <li class="list-group-item"><img src="assets/img/laser.png" alt=""></li>
+                    <li class="list-group-item"><img src="assets/img/T.png" alt=""></li>
+                    <li class="list-group-item"><img src="assets/img/trash.png" alt=""></li>
+
+                </ul>
+            </article>
+            <article class="d-flex justify-content-center align-items-center" style="width: 90%">
+                <div class="d-flex card bg-light mb-3" style="width: 80%;height: 80%;">
+                    <div class="card-header ">Pizarra</div>
+                    <div id="container" class="card-body"
+                        style="margin:0px;padding: 0px;width: 100%;height: 100vh;background: white;">
+
+                    </div>
+                </div>
+            </article>
+            <article class="d-flex justify-content-end align-items-start" style="width: 10%;">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <h3>Usuarios</h3>
+                    </li>
+                    <li class="list-group-item">
+                        <ul class="list-group" id="lista-usuarios">
+                        </ul>
+                    </li>
+                </ul>
+            </article>
+
+            </article>
+        </section>
+    </main>
+</body>
+
+</html>

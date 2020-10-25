@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizarra</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/assets/css/lumen.bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+</head>
+
+<body>
+    <main class="bg">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="/principal">Pizarras</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+                aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/listapizarras">Lista Pizarras
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="nombre de pizarra">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Buscar</button>
+                </form>
+            </div>
+        </nav>
+        <section>
+            <div class="jumbotron">
+                <h1 class="display-3">Pizarras!</h1>
+                <p class="lead">Esta busca ser herramienta que te permita crear diferentes pizarras para presentación ,
+                    dibujos cuadrados, circulos , exportaciones a pdf ,tratando de crear algo parecido a Jamboard de
+                    google y al tablero de Zoom</p>
+                <p class="lead">
+                    Está justamente hecho con node por la facilidad de su uso de Sockets
+                </p>
+                <p class="lead">Herramientas</p>
+                <ol class="list-group">
+                    <li class="list-group-item list-group-item-action ">Node.js</li>
+                    <li class="list-group-item list-group-item-action ">Express</li>
+                    <li class="list-group-item list-group-item-action ">Konva.js</li>
+                    <li class="list-group-item list-group-item-action ">Mysql</li>
+                </ol>
+                <hr class="my-4">
+                <p class="lead"><strong>Motivo:</strong>En su momento me llamaron a una empresa para crear una pizarra pero por diferentes motivos no pude
+                    terminarla , enfasis en falta de requerimientos</p>
+                <!--<p class="lead">
+                  <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+                </p>-->
+            </div>
+        </section>
+    </main>
+
+</body>
+
+</html>
