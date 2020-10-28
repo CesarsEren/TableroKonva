@@ -17,6 +17,7 @@ app.use(session({
 // Routes Server
 app.use(require('./routes/products'))
 app.use(require('./routes/usuarios'))
+app.use(require('./routes/pizarra'))
 // Routes Views
 app.use(require('./views/views'))
 app.use(express.static(path.join(__dirname,'public')));
@@ -24,7 +25,7 @@ app.use(express.static(path.join(__dirname,'public')));
 //Init Server
 //Open ServEr in port 3000
 var server = app.listen(app.get('port'),()=>{
-    console.log("server activo en el puesto",app.get('port'))
+    console.log("server activo en el puerto",app.get('port'))
 });
 
 //socket 

@@ -12,12 +12,19 @@
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/assets/css/lumen.bootstrap.min.css" />
+
+    <link rel="stylesheet" href="/assets/fontawesome/css/all.css" />
+    <link rel="stylesheet" href="/assets/fontawesome/css/fontawesome.css" />
+
+    <script src="assets/fontawesome/js/all.js"></script>
+    <script src="assets/fontawesome/js/fontawesome.js"></script>
+
     <link rel="stylesheet" href="/assets/css/style.css" />
 
 </head>
 
-<body>
-    <main class="bg">
+<body class="bg">
+    <main>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <a class="navbar-brand" href="/principal">Pizarras</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
@@ -39,11 +46,60 @@
                 </form>
             </div>
         </nav>
-        <section>
+        <section class="pt-5 pb-5">
+            <div class="container">
+                <div class="row" id="listpizarras">
 
+                </div>
         </section>
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            RequestAjax(
+                "GET",
+                "/getpizarras",
+                data => {
+                    var listpizarras = document.getElementById('listpizarras');
+                    var htmlpizarra = "";
+                    data.forEach(item => { htmlpizarra += componenteCardPizarra(item.titulo, item.img, item.codigo); });
+                    listpizarras.innerHTML = htmlpizarra;
+                })
+        });
 
+        var RequestAjax = function (http, url, callback) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    callback(JSON.parse(xhttp.responseText));
+                } else {
+                    return "REQUEST ERROR";
+                }
+            };
+            xhttp.open(http, url, true);
+            xhttp.send();
+        }
+
+        var componenteCardPizarra = function (titulo, img, codigo) {
+            return `<div class="col-md-4 p-2">
+                        <div class="card  text-center">
+                            <div
+                                class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                                ${titulo}
+                                <button class="btn btn-danger">
+                                    <i class="text-white fas fa-trash"></i>
+                                </button>
+                            </div>
+                            <hr>
+                            <img src="${img}" alt="" width="100%">
+                            <hr>
+                            <div class="card-body">
+                                <!--p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, quisquam?</p-->
+                                <a href="#" onclick="alert(${codigo})" class="btn btn-success btn-block">Entrar a Pizarra</a>
+                            </div>
+                        </div>
+                    </div>`
+        }
+    </script>
 </body>
 
 </html>

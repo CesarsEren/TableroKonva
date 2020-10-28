@@ -2,6 +2,19 @@
     margin: 0px;
     padding: 0px;
 }
+.bg{
+    background-color: #E4E4E4;
+}
+#login{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	align-content: flex-end;
+}
 #principal{
     display: flex;
     width: 100%;
