@@ -5,7 +5,7 @@ var elementoseleccionado;
 var contenedor;
 var propiedades;
 var _propiedadesbol = false;
-var socket = io.connect('http://localhost:4000');
+var socket = io.connect('http://localhost:3000');
 window.onload = () => {
     $("#login").modal("show");
 }

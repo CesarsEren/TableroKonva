@@ -16,11 +16,32 @@
     <link rel="stylesheet" href="/assets/css/lumen.bootstrap.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/node-uuid/1.4.7/uuid.min.js"></script>
     <script src="/assets/js/newindex.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
 <body>
     <main>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="/principal">Pizarras</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+                aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/listapizarras">Lista Pizarras
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="nombre de pizarra">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Buscar</button>
+                </form>
+            </div>
+        </nav>
         <!--<div class="modal" id="login" data-toggle="modal" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -96,6 +117,53 @@
             </article>
         </section>
     </main>
+    <script>
+        function window_mouseout(obj, evt, fn) {
+
+            if (obj.addEventListener) {
+
+                obj.addEventListener(evt, fn, false);
+            }
+            else if (obj.attachEvent) {
+
+                obj.attachEvent('on' + evt, fn);
+            }
+        }
+        window_mouseout(document, 'mouseout', event => {
+
+            event = event ? event : window.event;
+
+            var from = event.relatedTarget || event.toElement;
+
+            // Si quieres que solo salga una vez el mensaje borra lo comentado
+            // y así se guarda en localStorage
+
+            // let leftWindow   = localStorage.getItem( 'leftWindow' ) || false;
+
+            if ( /* !leftWindow  && */ (!from || from.nodeName === 'HTML')) {
+
+                // Haz lo que quieras aquí
+                Swal.fire({
+                    icon:'question',
+                    title: '¿Quieres guardar los cambios?',
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: `Guardar`,
+                    denyButtonText: `No Guardar`,
+                    cancelButtonText:'Cancelar'
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        Swal.fire('Cambios Guardados!', '', 'success')
+                    } else if (result.isDenied) {
+                        Swal.fire('Ultimos cambios Eliminados', '', 'info')
+                    }
+                })
+                //alert('¿Guardamos todo el avance?');
+                // localStorage.setItem( 'leftWindow', true );
+            }
+        });
+    </script>
 </body>
 
 </html>

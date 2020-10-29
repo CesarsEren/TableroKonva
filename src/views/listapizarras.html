@@ -78,6 +78,10 @@
             xhttp.open(http, url, true);
             xhttp.send();
         }
+        var goto = (codigo) => {
+            localStorage.setItem("pizarra",codigo);
+            window.location="/pizarra";
+        }
 
         var componenteCardPizarra = function (titulo, img, codigo) {
             return `<div class="col-md-4 p-2">
@@ -94,7 +98,7 @@
                             <hr>
                             <div class="card-body">
                                 <!--p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, quisquam?</p-->
-                                <a href="#" onclick="alert(${codigo})" class="btn btn-success btn-block">Entrar a Pizarra</a>
+                                <a href="#" onclick="goto(${codigo})" class="btn btn-success btn-block">Entrar a Pizarra</a>
                             </div>
                         </div>
                     </div>`

@@ -38,11 +38,11 @@ io.on('connection', function(socket){
 		console.log(data);
 		io.sockets.emit('tablero', data);
 	}); 
-	socket.on('usuarios', function(data){
+	/*socket.on('usuarios', function(data){
 		console.log(data);
 		listausuarios[x++]=data;
 		io.sockets.emit('usuarios', listausuarios);
-	});
+	});*/
 });
 
 
